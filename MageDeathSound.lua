@@ -30,12 +30,17 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         MDS.playerName = string.join(" ", UnitName("player"))
     elseif event == "UNIT_DIED" then
         local guid = ...
-        if string.contains(guid, "Creature") then
+        local _, cName, _, _, _, name, _ = GetPlayerInfoByGUID(guid)
+        if cName == nil then return end
+        if cName ~= "MAGE" then return end
+        if name == MDS.playerName and not MDS.db.onSelf then return end
+        if C_RestrictionActions.GetAddonRestrictionState(Enum.AddOnRestrictionType.Map) == Enum.AddOnRestrictionState.Active then
+            PlaySoundFile(LSM:Fetch(LSM.MediaType.SOUND, MDS.db.sound), "master")
             return
         end
-        local _, cName, _, _, _, name, _ = GetPlayerInfoByGUID(guid)
-        if cName == "MAGE" and ((name == MDS.playerName and MDS.db.onSelf) or C_PartyInfo.IsGUIDInGroup(guid)) then
+        if C_PartyInfo.IsGUIDInGroup(guid) then
             PlaySoundFile(LSM:Fetch(LSM.MediaType.SOUND, MDS.db.sound), "master")
+            return
         end
     end
 end)

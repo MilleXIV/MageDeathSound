@@ -2,7 +2,7 @@
 ## Title: Mage Death Sound
 ## Notes: Makes a squeak (or other noise) when a mage in your party or raid dies
 ## Author: |cffbbbbbbMille|cff990000XIV|r
-## Version: 1.0.0
+## Version: 1.0.1
 ## SavedVariablesPerCharacter: MageDeathSoundDB
 
 libs\LibStub\LibStub.lua
