@@ -34,7 +34,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         if cName == nil then return end
         if cName ~= "MAGE" then return end
         if name == MDS.playerName and not MDS.db.onSelf then return end
-        if C_RestrictionActions.GetAddonRestrictionState(Enum.AddOnRestrictionType.Map) == Enum.AddOnRestrictionState.Active then
+        if C_RestrictedActions.GetAddonRestrictionState(Enum.AddOnRestrictionType.Map) == Enum.AddOnRestrictionState.Active then
             PlaySoundFile(LSM:Fetch(LSM.MediaType.SOUND, MDS.db.sound), "master")
             return
         end
